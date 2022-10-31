@@ -1,5 +1,7 @@
 # Resource Override
 
+NOTE : I AM NOT THE ORIGINAL CREATOR OF THIS ADD-ON, ALL OF THE CREDIT GOES TO [kylepaulsen](https://github.com/kylepaulsen)
+
 ## ~~ This extension is now in maintenance mode!! ~~
 
 See what this means here: [maintenance_notice.md](maintenance_notice.md).
