@@ -19,9 +19,13 @@
                 nextRule = "set ";
                 nextRule += headerName + ": ";
                 nextRule += headerValue;
-            } else {
+            } else if (operation === "remove") {
                 nextRule = "remove ";
                 nextRule += headerName;
+            } else {
+                nextRule = "duplicate ";
+                nextRule += headerName + ": ";
+                nextRule += headerValue;
             }
         }
         return nextRule;
@@ -69,6 +73,14 @@
                     operation: "remove",
                     header: decodeURIComponent(ruleParts[0].substring(7))
                 });
+            } else if (ruleParts[0].indexOf("duplicate") === 0) {
+                if (ruleParts.length === 2) {
+                    ans.push({
+                        operation: "duplicate",
+                        header: decodeURIComponent(ruleParts[0].substring(10)),
+                        value:decodeURIComponent(ruleParts[1])
+                    });
+                }
             }
         });
         return ans;

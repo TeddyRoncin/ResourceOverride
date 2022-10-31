@@ -36,6 +36,14 @@
                     operation: "remove",
                     name: decodeURIComponent(ruleParts[0].substring(7)).toLowerCase()
                 });
+            } else if (ruleParts[0].indexOf("duplicate") === 0) {
+                if (ruleParts.length === 2) {
+                    ans.push({
+                        operation: "duplicate",
+                        name: decodeURIComponent(ruleParts[0].substring(10)).toLowerCase(),
+                        value: decodeURIComponent(ruleParts[1])
+                    });
+                }
             }
         }
         return ans;
@@ -69,9 +77,16 @@
                         name: rule.name,
                         value: rule.value
                     };
-                } else {
+                } else if (rule.operation === "remove") {
                     if (headersObj[rule.name]) {
                         headersObj[rule.name] = undefined;
+                    }
+                } else {
+                    if (headersObj[rule.name]) {
+                        headersObj[rule.value] = {
+                            name: rule.value,
+                            value: headersObj[rule.name].value
+                        };
                     }
                 }
             }
